@@ -1,0 +1,10 @@
+<h3>TO DO list</h3>
+<ol *ngIf="todos && todos.length > 0; else noToDos">
+  <li *ngFor="let todo of todos" data-cy="todos">{{ todo }}</li>
+</ol>
+
+<ng-template #noToDos>
+  <p>
+    Currently no todos available
+  </p>
+</ng-template>

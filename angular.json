@@ -316,6 +316,103 @@
           }
         }
       }
+    },
+    "my-second-lib": {
+      "projectType": "library",
+      "root": "libs/my-second-lib",
+      "sourceRoot": "libs/my-second-lib/src",
+      "prefix": "test-storybook",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/my-second-lib/tsconfig.lib.json",
+              "libs/my-second-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/my-second-lib/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/my-second-lib/jest.config.js",
+            "tsConfig": "libs/my-second-lib/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/my-second-lib/src/test-setup.ts"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/my-second-lib/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/my-second-lib",
+            "config": {
+              "configFolder": "libs/my-second-lib/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "my-second-lib-e2e": {
+      "root": "apps/my-second-lib-e2e",
+      "sourceRoot": "apps/my-second-lib-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/my-second-lib-e2e/cypress.json",
+            "tsConfig": "apps/my-second-lib-e2e/tsconfig.e2e.json",
+            "devServerTarget": "my-second-lib:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "my-second-lib:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/my-second-lib-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/my-second-lib-e2e/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

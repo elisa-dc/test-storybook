@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@test-storybook/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@test-storybook/my-first-lib": ["libs/my-first-lib/src/index.ts"]
+      "@test-storybook/my-first-lib": ["libs/my-first-lib/src/index.ts"],
+      "@test-storybook/my-second-lib": ["libs/my-second-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

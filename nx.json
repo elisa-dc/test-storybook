@@ -48,6 +48,15 @@
       "implicitDependencies": [
         "my-first-lib"
       ]
+    },
+    "my-second-lib": {
+      "tags": []
+    },
+    "my-second-lib-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "my-second-lib"
+      ]
     }
   }
 }
